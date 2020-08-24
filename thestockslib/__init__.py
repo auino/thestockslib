@@ -150,7 +150,7 @@ class TheStock():
 			try: os.remove(outputname_pre+i)
 			except: pass
 
-	def getgraphs(self, fcast_time, apikey, outputname_pre=''):
+	def generategraphs(self, fcast_time, apikey, outputname_pre=''):
 		print('Building graphs...')
 		print(self.ticker)
 		ts = TimeSeries(key=apikey, output_format='pandas')
@@ -238,7 +238,6 @@ class TheStock():
 			result = r.json()['quoteSummary']['result'][0]
 			recommendation = result['financialData']['recommendationMean']['fmt']
 		except: recommendation = 6
-		#recommendations.append(recommendation)
 		current_price = float(result['financialData']['currentPrice']['raw'])
-		recommendation = getyahoorecommendationstring(recommendation)
+		recommendation = TheStock.getyahoorecommendationstring(recommendation)
 		return {'recommendation': str(recommendation), 'current_price':str(current_price)}

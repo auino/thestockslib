@@ -85,7 +85,7 @@ Following methods are supported:
   * `suggestion` (`str`) the suggestion action
   * `transactionprice` (`float`) the price for transaction to consider
 
-* `getgraphs(fcast_time, apikey, outputname_pre='')`, generates the graphs to be displayed for the current symbol
+* `generategraphs(fcast_time, apikey, outputname_pre='')`, generates the graphs to be displayed for the current symbol
   * `fcast_time` (`int`) the forecast time to consider, in days
   * `apikey` (`str`) the API key to consider
   * `outputname_pre` (`str`) the preliminary file name to use for generated graphs
