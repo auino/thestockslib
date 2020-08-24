@@ -56,9 +56,9 @@ Just a single `TheStock` class is available.
 Following methods are supported:
 
 * `__init__(self, t, df='%Y-%m-%d', ca=ConsideredAverage.OPEN_CLOSE)`, initializes the `TheStock` object
-** `t` (`str`) is the ticker/symbol
-** `df` (`str`) is the date format to consider
-** `ca` (`ConsideredAverage`) is the average to consider
+ * `t` (`str`) is the ticker/symbol
+ * `df` (`str`) is the date format to consider
+ * `ca` (`ConsideredAverage`) is the average to consider
 
 * `addactiontoperiod(a, p)`, adds a match between a recommendation action and the duration to consider for that recommendation
 ** `a` (`str`) is the action title/name, as mapped with the list of recommedations
