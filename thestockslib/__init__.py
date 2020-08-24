@@ -209,8 +209,8 @@ class TheStock():
 		fig3.suptitle(self.ticker+' trend', size=20)
 		#fig3.set_title(self.ticker)
 		fig3.savefig(outputname_pre+'fig3.png')
-		combineimages([outputname_pre+'fig1.png', outputname_pre+'fig2.png'], True, outputname_pre+'tmp.png')
-		combineimages([outputname_pre+'tmp.png', outputname_pre+'fig3.png'])
+		TheStock.combineimages([outputname_pre+'fig1.png', outputname_pre+'fig2.png'], True, outputname_pre+'tmp.png')
+		TheStock.combineimages([outputname_pre+'tmp.png', outputname_pre+'fig3.png'])
 		# ...
 		#plt.show()
 

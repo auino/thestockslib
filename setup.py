@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="thestockslib",
-    version="0.0.2",
+    version="0.0.3",
     author="Enrico Cambiaso",
     author_email="enrico.cambiaso@gmail.com",
     description="A simple stocks package",
