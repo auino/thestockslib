@@ -1,8 +1,8 @@
 import os
 import datetime
-import pandas
 import requests
 import yfinance
+import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from enum import Enum
@@ -34,7 +34,7 @@ class TheStock():
 
 	def addactiontoperiod(self, a, p): self.actionstoperiods[str(a)] = int(p)
 
-	def convertdatetime(self, d): return pandas.to_datetime(str(d)).strftime(self.dateformat)
+	def convertdatetime(self, d): return pd.to_datetime(str(d)).strftime(self.dateformat)
 
 	def getliveprice(self, round_decimals=2): return round(si.get_live_price(self.ticker), round_decimals)
 
