@@ -61,34 +61,34 @@ Following methods are supported:
   * `ca` (`ConsideredAverage`) is the average to consider
 
 * `addactiontoperiod(a, p)`, adds a match between a recommendation action and the duration to consider for that recommendation
-** `a` (`str`) is the action title/name, as mapped with the list of recommedations
-** `p` (`int`) is the period to consider, in days
+  * `a` (`str`) is the action title/name, as mapped with the list of recommedations
+  * `p` (`int`) is the period to consider, in days
 
 * `convertdatetime(d)`, converts a datetime object `d` to a string, in the format `df` passed during the object initialization
-** `d` (`datetime`) the datetime object to convert
+  * `d` (`datetime`) the datetime object to convert
 
 * `getliveprice(round_decimals=2)`, returns the current live price for the current symbol
-** `round_decimals` (`int`) the decimals to consider for rounding
+  * `round_decimals` (`int`) the decimals to consider for rounding
 
 * `gethistoricalprice(d, round_decimals=2)`, returns the historical price for the current symbol at time `d`
-** `d` (`datetime`) the date to consider
-** `round_decimals` (`int`) the decimals to consider for rounding
+  * `d` (`datetime`) the date to consider
+  * `round_decimals` (`int`) the decimals to consider for rounding
 
 * `simulatepurchases(s)`, simulates purchases of the current symbol for the suggester `s`
-** `s` (`str`) the suggester's name to consider
+  * `s` (`str`) the suggester's name to consider
 
 * `simulatesells(p)`, simulates sell of given purchases `p`, after the expiration of the relative period for the action suggested for that purchase
-** `p` (`list`) the list of purchases objects
+  * `p` (`list`) the list of purchases objects
 
 * `getsuggestionreliability(suggester, suggestion, transactionprice=0.0)`, computes the reliability of a given suggester for a given suggestion
-** `suggester` (`str`) the suggester's name
-** `suggestion` (`str`) the suggestion action
-** `transactionprice` (`float`) the price for transaction to consider
+  * `suggester` (`str`) the suggester's name
+  * `suggestion` (`str`) the suggestion action
+  * `transactionprice` (`float`) the price for transaction to consider
 
 * `getgraphs(fcast_time, apikey, outputname_pre='')`, generates the graphs to be displayed for the current symbol
-** `fcast_time` (`int`) the forecast time to consider, in days
-** `apikey` (`str`) the API key to consider
-** `outputname_pre` (`str`) the preliminary file name to use for generated graphs
+  * `fcast_time` (`int`) the forecast time to consider, in days
+  * `apikey` (`str`) the API key to consider
+  * `outputname_pre` (`str`) the preliminary file name to use for generated graphs
 
 * `getyahoorecommendation()`, returns the current yahoo recommendation for the current symbol
 
@@ -97,15 +97,15 @@ Following statical methods are supported:
 * `getrevolutsymbols()`, returns the list of symbols supported by Revolut
 
 * `combineimages(l, vertical=False, outputfile='output.png')`, combines a list of images to an output file
-** `l` (`list`) the list of file names of the input images to combine
-** `vertical` (`bool`) the combination mode (vertical or horizonal)
-** `outputfile` (`str`) the output file name to generate
+  * `l` (`list`) the list of file names of the input images to combine
+  * `vertical` (`bool`) the combination mode (vertical or horizonal)
+  * `outputfile` (`str`) the output file name to generate
 
 * `removeimages(outputname_pre='')`, removes all images generated
-** `outputname_pre` (`str`) the preliminary file name to use for generated graphs
+  * `outputname_pre` (`str`) the preliminary file name to use for generated graphs
 
 * `getyahoorecommendationstring(r)`, retrieves the Yahoo recommendation string from the input value represented as `float`
-** `r` (`float`) the recommendation value represented as `float`
+  * `r` (`float`) the recommendation value represented as `float`
 
 ### TODO ###
 
