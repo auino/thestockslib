@@ -18,6 +18,9 @@ stock.getliveprice()
 r = stock.getyahoorecommendation()
 TheStock.getyahoorecommendationstring(r)
 
+# getting Yahoo performance outlook information (short term, medium term, long term)
+stock.getyahooperformanceoutlook()
+
 # getting historical price at July 31st, 2020
 stock.gethistoricalprice('2020-07-31')
 

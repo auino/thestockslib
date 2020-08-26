@@ -52,6 +52,23 @@ class TheStock():
 				else: return round(p, round_decimals)
 		return None
 
+	def getyahooperformanceoutlook(self):
+		baseurl = "https://finance.yahoo.com/quote/"+str(self.ticker)
+		r = requests.get(baseurl)
+		text = r.text.replace('>', '>\n')
+		text = text.split('\n')
+		res_html = []
+		for el in text:
+			if not "<svg" in el: continue
+			if not "Va(m)! pill" in el: continue
+			res_html.append(el)
+		res = []
+		for el in res_html:
+			if "#ff4d52" in el: res.append('down')
+			if "#1ac567" in el: res.append('up')
+			if el is None: res.append('neutral')
+		return res
+
 	def getrevolutsymbols():
 		REVOLUT_URL = 'https://raw.githubusercontent.com/nmapx/revolut-stocks-list/master/LIST.md'
 		r = []
