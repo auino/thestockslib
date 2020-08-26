@@ -93,7 +93,9 @@ Following methods are supported:
   * `apikey` (`str`) the API key to consider
   * `outputname_pre` (`str`) the preliminary file name to use for generated graphs
 
-* `getyahoorecommendation()`, returns the current yahoo recommendation for the current symbol
+* `getyahoorecommendation()`, returns the current Yahoo recommendation for the current symbol
+
+* `getyahooperformanceoutlook()`, returns the current Yahoo performance outlook for the current symbol (output is a list containing, in order, short term, medium term, long term results)
 
 Following statical methods are supported:
 
