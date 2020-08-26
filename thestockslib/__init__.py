@@ -66,7 +66,7 @@ class TheStock():
 		for el in res_html:
 			if "#ff4d52" in el: res.append('down')
 			if "#1ac567" in el: res.append('up')
-			if el is None: res.append('neutral')
+			if "#464e56" in el: res.append('neutral')
 		return res
 
 	def getrevolutsymbols():
