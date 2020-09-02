@@ -21,6 +21,7 @@ class ConsideredAverage(Enum):
 
 class TheStock():
 	ticker = None
+	tickerobject = None
 	dateformat = None
 	consideredaverage = ConsideredAverage.OPEN_CLOSE
 	historicaldata = None
@@ -29,8 +30,9 @@ class TheStock():
 	def __init__(self, t, df='%Y-%m-%d', ca=ConsideredAverage.OPEN_CLOSE):
 		self.dateformat = df
 		self.ticker = t
+		self.tickerobject = yfinance.Ticker(self.ticker)
 		self.consideredaverage = ca
-		self.historicaldata = yfinance.Ticker(self.ticker).history(period="max").to_records()
+		self.historicaldata = self.tickerobject.history(period="max").to_records()
 
 	def addactiontoperiod(self, a, p): self.actionstoperiods[str(a)] = int(p)
 
@@ -90,7 +92,7 @@ class TheStock():
 
 	def simulatepurchases(self, s):
 		purchases = []
-		data = yfinance.Ticker(self.ticker).recommendations.to_records()
+		data = self.tickerobject.recommendations.to_records()
 		for d in data:
 			if d[1] != s: continue
 			referringdate = self.convertdatetime(d[0])
@@ -114,8 +116,8 @@ class TheStock():
 			pp['profit_per_stock'] = profit
 		return p
 
-	def getsuggestionreliability(self, suggester, suggestion, transactionprice=0.0):
-		hist = yfinance.Ticker(self.ticker).history(period="max").to_records()
+	def getsuggestionreliabilitydata(self, suggester, suggestion, transactionprice=0.0):
+		hist = self.tickerobject.history(period="max").to_records()
 		purchases = self.simulatepurchases(suggester)
 		print(">>> Simulated "+str(len(purchases))+" purchases")
 		purchases = self.simulatesells(purchases)
@@ -137,6 +139,11 @@ class TheStock():
 		suggester_data = {'suggester':suggester, 'numbers': {'right':right, 'wrong':wrong, 'reliability':p}, 'details':recommendations}
 		# other
 		return suggester_data
+
+	def getsuggestionreliability(self, suggester, suggestion, transactionprice=0.0):
+		reliability_obj = self.getsuggestionreliability(suggester, suggestion, transactionprice)
+		computedtransactions = int(reliability_obj.get('numbers').get('right')) + int(reliability_obj.get('numbers').get('wrong'))
+		return reliability_obj.get('numbers').get('reliability')
 
 	def combineimages(l, vertical=False, outputname_pre=''):
 		images = [Image.open(x) for x in l]

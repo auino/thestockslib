@@ -56,6 +56,14 @@ Following values are possible:
 
 Just a single `TheStock` class is available.
 
+Following attributes are supported:
+
+* `ticker` the string of the ticker considered (e.g. `AAPL`)
+* `tickerobject` the [yfinance](https://pypi.org/project/yfinance/) Ticker object
+* `dateformat` the date format to consider (default to `%Y-%m-%d`)
+* `consideredaverage` the average computation metric to consider (default to `ConsideredAverage.OPEN_CLOSE`)
+* `historicaldata` the historical market data for the current ticker, according to [yfinance](https://pypi.org/project/yfinance/) data format, converted to an array of records
+
 Following methods are supported:
 
 * `__init__(self, t, df='%Y-%m-%d', ca=ConsideredAverage.OPEN_CLOSE)`, initializes the `TheStock` object
@@ -83,7 +91,12 @@ Following methods are supported:
 * `simulatesells(p)`, simulates sell of given purchases `p`, after the expiration of the relative period for the action suggested for that purchase
   * `p` (`list`) the list of purchases objects
 
-* `getsuggestionreliability(suggester, suggestion, transactionprice=0.0)`, computes the reliability of a given suggester for a given suggestion
+* `getsuggestionreliabilitydata(suggester, suggestion, transactionprice=0.0)`, provides structured information on the reliability of a given suggester and for a given suggestion
+  * `suggester` (`str`) the suggester's name
+  * `suggestion` (`str`) the suggestion action
+  * `transactionprice` (`float`) the price for transaction to consider
+
+* `getsuggestionreliability(suggester, suggestion, transactionprice=0.0)`, computes the reliability of a given suggester and for a given suggestion
   * `suggester` (`str`) the suggester's name
   * `suggestion` (`str`) the suggestion action
   * `transactionprice` (`float`) the price for transaction to consider
@@ -99,7 +112,7 @@ Following methods are supported:
 
 Following statical methods are supported:
 
-* `getrevolutsymbols()`, returns the list of symbols supported by Revolut
+* `getrevolutsymbols()`, returns the list of symbols supported by [Revolut](https://www.revolut.com)
 
 * `combineimages(l, vertical=False, outputfile='output.png')`, combines a list of images to an output file
   * `l` (`list`) the list of file names of the input images to combine
@@ -115,7 +128,6 @@ Following statical methods are supported:
 ### TODO ###
 
 * Improve code readability
-
 
 ### Contacts ###
 
