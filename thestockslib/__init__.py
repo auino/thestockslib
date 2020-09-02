@@ -138,7 +138,7 @@ class TheStock():
 		# other
 		return suggester_data
 
-	def combineimages(l, vertical=False, outputfile='output.png'):
+	def combineimages(l, vertical=False, outputname_pre=''):
 		images = [Image.open(x) for x in l]
 		widths, heights = zip(*(i.size for i in images))
 
@@ -159,7 +159,7 @@ class TheStock():
 			if vertical: i = 1
 			offset += im.size[i]
 
-		new_im.save(outputfile)
+		new_im.save(outputname_pre+'output.png')
 
 	def removeimages(outputname_pre=''):
 		l = ['fig1.png', 'fig2.png', 'fig3.png', 'tmp.png', 'output.png']
@@ -168,8 +168,6 @@ class TheStock():
 			except: pass
 
 	def generategraphs(self, fcast_time, apikey, outputname_pre=''):
-		print('Building graphs...')
-		print(self.ticker)
 		ts = TimeSeries(key=apikey, output_format='pandas')
 		stockdata, meta_data = ts.get_daily(symbol=self.ticker, outputsize='full')
 		stockdata.head()
@@ -203,12 +201,12 @@ class TheStock():
 		df_prophet.fit(ss)
 		# ...
 		df_forecast = df_prophet.make_future_dataframe(periods=fcast_time, freq='D')
-		df_forecast.tail(10)
+		#df_forecast.tail(10)
 		# ...
 		# Do forecasting
 		df_forecast = df_prophet.predict(df_forecast)
 		# ...
-		df_forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
+		#df_forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
 		#Do the plot
 		fig1 = df_prophet.plot(df_forecast, xlabel='Date', ylabel=self.ticker+' Price')
 		fig1.gca().set_title(self.ticker+' prediction (all history)', size=20)
@@ -226,8 +224,8 @@ class TheStock():
 		fig3.suptitle(self.ticker+' trend', size=20)
 		#fig3.set_title(self.ticker)
 		fig3.savefig(outputname_pre+'fig3.png')
-		TheStock.combineimages([outputname_pre+'fig1.png', outputname_pre+'fig2.png'], True, outputname_pre+'tmp.png')
-		TheStock.combineimages([outputname_pre+'tmp.png', outputname_pre+'fig3.png'])
+		TheStock.combineimages([outputname_pre+'fig1.png', outputname_pre+'fig2.png'], True, outputname_pre=outputname_pre+'tmp')
+		TheStock.combineimages([outputname_pre+'tmp'+'output.png', outputname_pre+'fig3.png'], outputname_pre=outputname_pre)
 		# ...
 		#plt.show()
 
