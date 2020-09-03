@@ -141,7 +141,7 @@ class TheStock():
 		return suggester_data
 
 	def getsuggestionreliability(self, suggester, suggestion, transactionprice=0.0):
-		reliability_obj = self.getsuggestionreliability(suggester, suggestion, transactionprice)
+		reliability_obj = self.getsuggestionreliabilitydata(suggester, suggestion, transactionprice)
 		computedtransactions = int(reliability_obj.get('numbers').get('right')) + int(reliability_obj.get('numbers').get('wrong'))
 		return reliability_obj.get('numbers').get('reliability')
 
