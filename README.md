@@ -101,14 +101,18 @@ Following methods are supported:
   * `suggestion` (`str`) the suggestion action
   * `transactionprice` (`float`) the price for transaction to consider
 
-* `generategraphs(fcast_time, apikey, outputname_pre='')`, generates the graphs to be displayed for the current symbol
+* `generategraphs(fcast_time, alphavantage_apikey, outputname_pre='')`, generates the graphs to be displayed for the current symbol
   * `fcast_time` (`int`) the forecast time to consider, in days
-  * `apikey` (`str`) the API key to consider
+  * `alphavantage_apikey` (`str`) the [AlphaVantage](https://www.alphavantage.co) API key to use
   * `outputname_pre` (`str`) the preliminary file name to use for generated graphs
 
 * `getyahoorecommendation()`, returns the current Yahoo recommendation for the current symbol
 
 * `getyahooperformanceoutlook()`, returns the current Yahoo performance outlook for the current symbol (output is a list containing, in order, short term, medium term, long term results)
+
+* `getcompanynews(finnhub_apikey, fromdate=None)`, returns the list of today news related to the current symbol
+  * `finnhub_apikey` (`str`) the [FinnHub](https://finnhub.io) API key to use
+  * `fromdate` (`str`) the starting date to consider when retrieving the news, if the retrieval of news older than today is needed
 
 Following statical methods are supported:
 

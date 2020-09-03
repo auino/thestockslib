@@ -174,8 +174,8 @@ class TheStock():
 			try: os.remove(outputname_pre+i)
 			except: pass
 
-	def generategraphs(self, fcast_time, apikey, outputname_pre=''):
-		ts = TimeSeries(key=apikey, output_format='pandas')
+	def generategraphs(self, fcast_time, alphavantage_apikey, outputname_pre=''):
+		ts = TimeSeries(key=alphavantage_apikey, output_format='pandas')
 		stockdata, meta_data = ts.get_daily(symbol=self.ticker, outputsize='full')
 		stockdata.head()
 		# rename
@@ -263,3 +263,17 @@ class TheStock():
 		current_price = float(result['financialData']['currentPrice']['raw'])
 		recommendation = TheStock.getyahoorecommendationstring(recommendation)
 		return {'recommendation': str(recommendation), 'current_price':str(current_price)}
+
+	def getcompanynews(self, finnhub_apikey, fromdate=None):
+		res = []
+		if fromdate is None: fromdate = convertdatetime(datetime.datetime.now() - datetime.timedelta(days=0))
+		todate = convertdatetime(datetime.datetime.now())
+		r = requests.get('https://finnhub.io/api/v1/company-news?symbol='+self.ticker+'&from='+fromdate+'&to='+todate+'&token='+finnhub_apikey)
+		r = r.json()
+		for el in r:
+			news_date = datetime.datetime.fromtimestamp(el['datetime']).strftime('%Y-%m-%d')
+			news_title = el['headline']
+			news_url = el['url']
+			print('[{DATE}] {TITLE}: {URL}'.replace('{DATE}', news_date).replace('{TITLE}', news_title).replace('{URL}', news_url))
+			res.append({'date':news_date, 'title':news_title, 'url':news_url})
+		return res
