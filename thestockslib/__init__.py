@@ -266,8 +266,8 @@ class TheStock():
 
 	def getcompanynews(self, finnhub_apikey, fromdate=None):
 		res = []
-		if fromdate is None: fromdate = convertdatetime(datetime.datetime.now() - datetime.timedelta(days=0))
-		todate = convertdatetime(datetime.datetime.now())
+		if fromdate is None: fromdate = self.convertdatetime(datetime.datetime.now() - datetime.timedelta(days=0))
+		todate = self.convertdatetime(datetime.datetime.now())
 		r = requests.get('https://finnhub.io/api/v1/company-news?symbol='+self.ticker+'&from='+fromdate+'&to='+todate+'&token='+finnhub_apikey)
 		r = r.json()
 		for el in r:
